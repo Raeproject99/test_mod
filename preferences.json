@@ -1,0 +1,23 @@
+[
+  {
+    "property": "mod.tokyo-night-zen.accent",
+    "label": "Accent color",
+    "type": "dropdown",
+    "defaultValue": "blue",
+    "options": [
+      { "label": "Blue (default)",   "value": "blue"   },
+      { "label": "Purple / Magenta", "value": "purple" },
+      { "label": "Cyan",             "value": "cyan"   },
+      { "label": "Teal",             "value": "teal"   },
+      { "label": "Green",            "value": "green"  },
+      { "label": "Orange",           "value": "orange" },
+      { "label": "Red",              "value": "red"    }
+    ]
+  },
+  {
+    "property": "mod.tokyo-night-zen.storm",
+    "label": "Use Storm variant (slightly lighter navy backgrounds)",
+    "type": "checkbox",
+    "defaultValue": false
+  }
+]

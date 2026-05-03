@@ -1,0 +1,207 @@
+/* ==========================================================================
+   Tokyo Night — for Zen Browser (Sine mod)
+   --------------------------------------------------------------------------
+   Recolors Zen's built-in design tokens (see zen-theme.css) using the
+   Tokyo Night palette by enkia.  Most Zen colors derive from two roots —
+   `--zen-primary-color` and `--zen-branding-dark` — via color-mix(), so
+   overriding those propagates through the UI.  A few hardcoded
+   light-dark() values (main browser bg, urlbar bg, dialog bg, etc.) are
+   overridden directly below.
+   ========================================================================== */
+
+:host(:is(.anonymous-content-host, notification-message)),
+:root {
+
+  /* -----------------------------------------------------------------------
+     1. Tokyo Night palette
+     ----------------------------------------------------------------------- */
+
+  /* Backgrounds (Night variant) */
+  --tn-bg:            #1a1b26;  /* editor background                       */
+  --tn-bg-dark:       #16161e;  /* sidebar / tab strip / panel background  */
+  --tn-bg-darker:     #14141b;  /* input fields                            */
+  --tn-bg-darkest:    #101014;  /* hairline borders                        */
+  --tn-bg-highlight:  #1e202e;  /* current-line / menu hover               */
+  --tn-bg-selection:  #292e42;  /* selection / active list item            */
+
+  /* Foregrounds */
+  --tn-fg:         #c0caf5;     /* variables, terminal white               */
+  --tn-fg-dim:     #a9b1d6;     /* editor foreground                       */
+  --tn-fg-muted:   #9aa5ce;     /* HTML / markdown text                    */
+  --tn-fg-faint:   #787c99;     /* sidebar foreground                      */
+  --tn-fg-comment: #565f89;     /* comments                                */
+
+  /* Borders */
+  --tn-border:        #414868;  /* terminal black                          */
+  --tn-border-bright: #545c7e;
+
+  /* Accents (mapped to Tokyo Night syntax roles) */
+  --tn-blue:    #7aa2f7;        /* function names — DEFAULT primary        */
+  --tn-cyan:    #7dcfff;        /* properties, headings                    */
+  --tn-teal:    #73daca;        /* object keys, links                      */
+  --tn-purple:  #bb9af7;        /* control keywords                        */
+  --tn-magenta: #ad8ee6;
+  --tn-green:   #9ece6a;        /* strings                                 */
+  --tn-yellow:  #e0af68;        /* parameters                              */
+  --tn-orange:  #ff9e64;        /* numbers                                 */
+  --tn-red:     #f7768e;        /* `this`, html elements                   */
+
+  /* -----------------------------------------------------------------------
+     2. Primary accent + brand background
+     Most other Zen colors are color-mix()'d from these two.
+     ----------------------------------------------------------------------- */
+
+  --zen-primary-color: var(--tn-blue) !important;
+
+  --zen-branding-dark:  var(--tn-bg);
+  --zen-branding-paper: var(--tn-bg);   /* keep dark even if scheme=light  */
+
+  /* -----------------------------------------------------------------------
+     3. Main chrome surfaces (these hardcode their own light-dark() values
+        in zen-theme.css and so don't pick up brand changes automatically)
+     ----------------------------------------------------------------------- */
+
+  --zen-main-browser-background:           var(--tn-bg-dark) !important;
+  --zen-main-browser-background-toolbar:   var(--tn-bg-dark) !important;
+  --zen-themed-toolbar-bg-transparent:     var(--tn-bg-dark) !important;
+
+  --zen-dialog-background:                 var(--tn-bg-dark) !important;
+  --zen-in-content-dialog-background:      var(--tn-bg) !important;
+  --in-content-page-background:            var(--tn-bg) !important;
+  --arrowpanel-background:                 var(--tn-bg-dark) !important;
+
+  /* URL bar */
+  --zen-urlbar-background:
+      color-mix(in srgb, var(--tn-blue) 4%, var(--tn-bg-darker) 96%) !important;
+  --toolbar-field-background-color:        var(--tn-bg-darker) !important;
+  --toolbar-field-focus-background-color:  var(--tn-bg-highlight) !important;
+  --toolbar-field-color:                   var(--tn-fg-dim) !important;
+  --zen-colors-input-bg:                   var(--tn-bg-darker) !important;
+
+  /* Toolbar text */
+  --toolbar-bgcolor:
+      color-mix(in srgb, var(--tn-bg) 85%, transparent) !important;
+  --toolbar-color:                         var(--tn-fg-dim) !important;
+  --toolbox-textcolor:                     var(--tn-fg-dim) !important;
+  --toolbox-textcolor-inactive:            var(--tn-fg-faint) !important;
+
+  /* -----------------------------------------------------------------------
+     4. Borders & separators
+     ----------------------------------------------------------------------- */
+
+  --zen-colors-border:
+      color-mix(in srgb, var(--tn-border) 60%, transparent) !important;
+  --zen-colors-border-contrast:
+      color-mix(in srgb, var(--tn-border-bright) 30%, transparent) !important;
+  --zen-input-border-color:                var(--tn-border) !important;
+  --input-border-color:                    var(--tn-border) !important;
+  --panel-separator-color:
+      color-mix(in srgb, var(--tn-border) 50%, transparent) !important;
+
+  /* -----------------------------------------------------------------------
+     5. Hover / active toolbar element backgrounds
+     ----------------------------------------------------------------------- */
+
+  --zen-toolbar-element-bg:
+      color-mix(in srgb, var(--tn-fg-dim) 8%, transparent) !important;
+  --zen-toolbar-element-bg-hover:
+      color-mix(in srgb, var(--tn-blue) 18%, transparent) !important;
+
+  --toolbarbutton-hover-background:        var(--zen-toolbar-element-bg-hover) !important;
+  --toolbarbutton-active-background:
+      color-mix(in srgb, var(--tn-blue) 28%, transparent) !important;
+
+  --tab-hover-background-color:            var(--zen-toolbar-element-bg-hover) !important;
+  --urlbar-box-hover-bgcolor:              var(--zen-toolbar-element-bg-hover) !important;
+  --urlbar-box-active-bgcolor:             var(--zen-toolbar-element-bg-hover) !important;
+
+  /* -----------------------------------------------------------------------
+     6. Sidebar notifications & themed icon fill
+     ----------------------------------------------------------------------- */
+
+  --zen-sidebar-notification-bg:
+      color-mix(in srgb, var(--tn-blue) 8%, var(--tn-bg-dark)) !important;
+  --zen-sidebar-notification-shadow:
+      0 0 6px rgba(0, 0, 0, 0.4) !important;
+  --zen-sidebar-themed-icon-fill:
+      color-mix(in srgb, var(--tn-blue) 30%, var(--tn-fg-dim)) !important;
+
+  /* -----------------------------------------------------------------------
+     7. Links inside chrome (about: pages, panels)
+     ----------------------------------------------------------------------- */
+
+  --link-color:        var(--tn-cyan)   !important;
+  --link-color-hover:  var(--tn-blue)   !important;
+  --link-color-active: var(--tn-purple) !important;
+
+  /* -----------------------------------------------------------------------
+     8. Force dark color-scheme — Tokyo Night is fundamentally a dark theme,
+        so we prevent Zen's auto-light-mode from leaking through.
+     ----------------------------------------------------------------------- */
+
+  color-scheme: dark !important;
+}
+
+/* ==========================================================================
+   Preference-driven accent override
+   --------------------------------------------------------------------------
+   The user can pick a different accent in the mod's settings panel.
+   "blue" is the default and applied above; the rules below kick in only
+   when one of the alternative values is selected.
+   ========================================================================== */
+
+@media (-moz-pref("mod.tokyo-night-zen.accent", "purple")) {
+  :host(:is(.anonymous-content-host, notification-message)),
+  :root { --zen-primary-color: var(--tn-purple) !important; }
+}
+@media (-moz-pref("mod.tokyo-night-zen.accent", "cyan")) {
+  :host(:is(.anonymous-content-host, notification-message)),
+  :root { --zen-primary-color: var(--tn-cyan) !important; }
+}
+@media (-moz-pref("mod.tokyo-night-zen.accent", "teal")) {
+  :host(:is(.anonymous-content-host, notification-message)),
+  :root { --zen-primary-color: var(--tn-teal) !important; }
+}
+@media (-moz-pref("mod.tokyo-night-zen.accent", "green")) {
+  :host(:is(.anonymous-content-host, notification-message)),
+  :root { --zen-primary-color: var(--tn-green) !important; }
+}
+@media (-moz-pref("mod.tokyo-night-zen.accent", "orange")) {
+  :host(:is(.anonymous-content-host, notification-message)),
+  :root { --zen-primary-color: var(--tn-orange) !important; }
+}
+@media (-moz-pref("mod.tokyo-night-zen.accent", "red")) {
+  :host(:is(.anonymous-content-host, notification-message)),
+  :root { --zen-primary-color: var(--tn-red) !important; }
+}
+
+/* ==========================================================================
+   Storm variant — slightly lighter "navy" backgrounds.
+   ========================================================================== */
+
+@media (-moz-pref("mod.tokyo-night-zen.storm")) {
+  :host(:is(.anonymous-content-host, notification-message)),
+  :root {
+    --tn-bg:           #24283b;
+    --tn-bg-dark:      #1f2335;
+    --tn-bg-darker:    #1a1e2e;
+    --tn-bg-darkest:   #16182a;
+    --tn-bg-highlight: #292e42;
+    --tn-bg-selection: #2e3450;
+
+    --zen-branding-dark:                     var(--tn-bg);
+    --zen-branding-paper:                    var(--tn-bg);
+    --zen-main-browser-background:           var(--tn-bg-dark) !important;
+    --zen-main-browser-background-toolbar:   var(--tn-bg-dark) !important;
+    --zen-themed-toolbar-bg-transparent:     var(--tn-bg-dark) !important;
+    --zen-dialog-background:                 var(--tn-bg-dark) !important;
+    --zen-in-content-dialog-background:      var(--tn-bg) !important;
+    --in-content-page-background:            var(--tn-bg) !important;
+    --arrowpanel-background:                 var(--tn-bg-dark) !important;
+    --toolbar-field-background-color:        var(--tn-bg-darker) !important;
+    --toolbar-field-focus-background-color:  var(--tn-bg-highlight) !important;
+    --zen-colors-input-bg:                   var(--tn-bg-darker) !important;
+    --zen-urlbar-background:
+        color-mix(in srgb, var(--zen-primary-color) 4%, var(--tn-bg-darker) 96%) !important;
+  }
+}
