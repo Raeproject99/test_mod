@@ -205,3 +205,23 @@
         color-mix(in srgb, var(--zen-primary-color) 4%, var(--tn-bg-darker) 96%) !important;
   }
 }
+
+
+#navigator-toolbox:is(
+    [zen-has-hover], [zen-user-show],
+    [zen-has-empty-tab], [flash-popup],
+    [has-popup-menu], [movingtab],
+    [zen-compact-mode-active]
+  ),
+  &[zen-renaming-tab='true'] #navigator-toolbox {
+    &:not([animate='true']) {
+      --zen-compact-mode-func: linear(
+        /* ... giant list of numbers ... */
+      );
+--zen-compact-mode-time: 0.25s;
+      transition:
+        left var(--zen-compact-mode-time) var(--zen-compact-mode-func),
+        right var(--zen-compact-mode-time) var(--zen-compact-mode-func);
+        
+      /* 👇 ADD THIS LINE HERE 👇 */
+      transition-delay: 1s !important;
